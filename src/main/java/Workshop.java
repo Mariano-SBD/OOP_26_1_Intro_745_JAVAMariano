@@ -188,121 +188,254 @@ for (int i = 0; i < arreglo.length; i++) {
     public int[] invertirArreglo(int[] arreglo) {
         // TODO: Implementar el método para invertir un arreglo.
         // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser [5, 4, 3, 2, 1].
-        return new int[0];
+        //return new int[0];
+    int[] invertido = new int[arreglo.length];
+
+    for (int i = 0; i < arreglo.length; i++) {
+        invertido[i] = arreglo[arreglo.length - 1 - i];
     }
+
+    return invertido;
+}
 
     // Método que ordena un arreglo en orden ascendente
     public int[] ordenarArreglo(int[] arreglo) {
         // TODO: Implementar el método para ordenar un arreglo en orden ascendente.
         // Ejemplo: Si arreglo = [5, 4, 3, 2, 1], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+        //return new int[0];
+    for (int i = 0; i < arreglo.length - 1; i++) {
+
+        for (int j = 0; j < arreglo.length - 1 - i; j++) {
+
+            if (arreglo[j] > arreglo[j + 1]) {
+
+                int temp = arreglo[j];
+                arreglo[j] = arreglo[j + 1];
+                arreglo[j + 1] = temp;
+
+            }
+        }
     }
+
+    return arreglo;
+}
 
     // Método que elimina los duplicados de un arreglo
     public int[] eliminarDuplicados(int[] arreglo) {
         // TODO: Implementar el método para eliminar los duplicados de un arreglo.
         // Ejemplo: Si arreglo = [1, 2, 2, 3, 4, 4, 5], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+        //return new int[0];
+    int[] temporal = new int[arreglo.length];
+    int contador = 0;
+
+    for (int i = 0; i < arreglo.length; i++) {
+
+        boolean duplicado = false;
+
+        for (int j = 0; j < contador; j++) {
+            if (arreglo[i] == temporal[j]) {
+                duplicado = true;
+                break;
+            }
+        }
+
+        if (!duplicado) {
+            temporal[contador] = arreglo[i];
+            contador++;
+        }
     }
+
+    int[] resultado = new int[contador];
+
+    for (int i = 0; i < contador; i++) {
+        resultado[i] = temporal[i];
+    }
+
+    return resultado;
+}
 
     // Método que combina dos arreglos en uno solo
     public int[] combinarArreglos(int[] arreglo1, int[] arreglo2) {
         // TODO: Implementar el método para combinar dos arreglos en uno solo.
         // Ejemplo: Si arreglo1 = [1, 2, 3, 4, 5] y arreglo2 = [6, 7, 8], el resultado debería ser [1, 2, 3, 4, 5, 6, 7, 8].
-        return new int[0];
+        //return new int[0];
+    int[] resultado = new int[arreglo1.length + arreglo2.length];
+
+    for (int i = 0; i < arreglo1.length; i++) {
+        resultado[i] = arreglo1[i];
     }
+
+    for (int i = 0; i < arreglo2.length; i++) {
+        resultado[arreglo1.length + i] = arreglo2[i];
+    }
+
+    return resultado;
+}
 
     // Método que rota un arreglo n posiciones
     public int[] rotarArreglo(int[] arreglo, int posiciones) {
         // TODO: Implementar el método para rotar un arreglo n posiciones.
         // Ejemplo: Si arreglo = [1, 2, 3, 4, 5] y posiciones = 2, el resultado debería ser [3, 4, 5, 1, 2].
-        return new int[0];
+        //return new int[0];
+    int n = arreglo.length;
+    int[] resultado = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        resultado[i] = arreglo[(i + posiciones) % n];
     }
+
+    return resultado;
+}
 
     // Método que cuenta los caracteres en una cadena
     public int contarCaracteres(String cadena) {
         // TODO: Implementar el método para contar el número de caracteres en una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser 5.
-        return 0;
-    }
+        //return 0;
+    return cadena.length();
+
+}
 
     // Método que invierte una cadena
     public String invertirCadena(String cadena) {
         // TODO: Implementar el método para invertir una cadena.
         // Ejemplo: Si cadena = "Hello", el resultado debería ser "olleH".
-        return "";
+        //return "";
+    String invertida = "";
+
+    for (int i = cadena.length() - 1; i >= 0; i--) {
+        invertida += cadena.charAt(i);
     }
+
+    return invertida;
+}
 
     // Método que verifica si una cadena es un palíndromo
     public boolean esPalindromo(String cadena) {
         // TODO: Implementar el método para verificar si una cadena es un palíndromo.
         // Ejemplo: Si cadena = "madam", el resultado debería ser true.
+        //return false;
+    // Convertimos la cadena a minúsculas para evitar problemas con mayúsculas
+    cadena = cadena.toLowerCase();
+    
+    // Variable para guardar la cadena invertida
+    String invertida = "";
+    
+    // Recorremos la cadena desde el final hasta el inicio
+    for (int i = cadena.length() - 1; i >= 0; i--) {
+        invertida += cadena.charAt(i);
+    }
+    
+    // Comparamos la cadena original con la invertida
+    if (cadena.equals(invertida)) {
+        return true;
+    } else {
         return false;
     }
+}
 
     // Método que cuenta el número de palabras en una cadena
     public int contarPalabras(String cadena) {
         // TODO: Implementar el método para contar el número de palabras en una cadena.
         // Ejemplo: Si cadena = "Este es un test", el resultado debería ser 4.
+        //return 0;
+    // Eliminamos espacios al inicio y al final
+    cadena = cadena.trim();
+    
+    // Si la cadena está vacía, no hay palabras
+    if (cadena.isEmpty()) {
         return 0;
     }
+    
+    // Dividimos la cadena por espacios
+    String[] palabras = cadena.split("\\s+");
+    
+    // Retornamos la cantidad de palabras
+    return palabras.length;
+}
 
     // Método que convierte una cadena a mayúsculas
     public String convertirAMayusculas(String cadena) {
         // TODO: Implementar el método para convertir una cadena a mayúsculas.
         // Ejemplo: Si cadena = "hello", el resultado debería ser "HELLO".
-        return "";
-    }
+        //return "";
+    // Convertimos la cadena a mayúsculas
+    return cadena.toUpperCase();
+}
 
     // Método que convierte una cadena a minúsculas
     public String convertirAMinusculas(String cadena) {
         // TODO: Implementar el método para convertir una cadena a minúsculas.
         // Ejemplo: Si cadena = "HELLO", el resultado debería ser "hello".
-        return "";
-    }
+        //return "";
+    // Convertimos la cadena a minúsculas
+    return cadena.toLowerCase();
+}
 
     // Método que reemplaza una subcadena en una cadena por otra subcadena
     public String reemplazarSubcadena(String cadena, String antiguaSubcadena, String nuevaSubcadena) {
         // TODO: Implementar el método para reemplazar una subcadena en una cadena por otra subcadena.
         // Ejemplo: Si cadena = "Hello Java", antiguaSubcadena = "Java", y nuevaSubcadena = "world", el resultado debería ser "Hello world".
-        return "";
-    }
+        //return "";
+    // Reemplazamos la subcadena antigua por la nueva
+    return cadena.replace(antiguaSubcadena, nuevaSubcadena);
+}
 
     // Método que busca una subcadena en una cadena y retorna su índice
     public int buscarSubcadena(String cadena, String subcadena) {
         // TODO: Implementar el método para buscar una subcadena en una cadena y retornar su índice.
         // Ejemplo: Si cadena = "Hello world" y subcadena = "world", el resultado debería ser 6.
-        return -1;
-    }
+        //return -1;
+    // Retorna el índice donde comienza la subcadena
+    return cadena.indexOf(subcadena);
+}
 
     // Método que valida un correo electrónico
     public boolean validarCorreoElectronico(String correo) {
         // TODO: Implementar el método para validar un correo electrónico.
         // Ejemplo: Si correo = "test@example.com", el resultado debería ser true.
-        return false;
-    }
+        //return false;
+    // Expresión regular básica para validar correos
+    String patron = "^[A-Za-z0-9+_.-]+@(.+)$";
+
+    // Verifica si el correo cumple el patrón
+    return correo.matches(patron);
+}
 
     // Método que calcula el promedio de una lista de números
 
     public double promedioLista(List<Integer> lista) {
         // TODO: Implementar el método para calcular el promedio de una lista de números.
         // Ejemplo: Si lista = [1, 2, 3, 4, 5], el resultado debería ser 3.0.
-        return 0.0;
+        //return 0.0;
+    int suma = 0;
+
+    // Recorremos la lista y sumamos los valores
+    for (int numero : lista) {
+        suma += numero;
     }
+
+    // Calculamos el promedio
+    return (double) suma / lista.size();
+}
 
     // Método que convierte un número en su representación binaria
     public String convertirABinario(int numero) {
         // TODO: Implementar el método para convertir un número en su representación binaria.
         // Ejemplo: Si numero = 10, el resultado debería ser "1010".
-        return "";
-    }
+        //return "";
+    // Convierte el número a binario
+    return Integer.toBinaryString(numero);
+}
 
     // Método que convierte un número en su representación hexadecimal
     public String convertirAHexadecimal(int numero) {
         // TODO: Implementar el método para convertir un número en su representación hexadecimal.
         // Ejemplo: Si numero = 255, el resultado debería ser "FF".
-        return "";
-    }
+        //return "";
+    // Convertimos el número a hexadecimal y a mayúsculas
+    return Integer.toHexString(numero).toUpperCase();
+}
 
     // Método para el juego de piedra, papel, tijera, lagarto, Spock
     public String jugarPiedraPapelTijeraLagartoSpock(String eleccionUsuario) {
@@ -313,43 +446,34 @@ for (int i = 0; i < arreglo.length; i++) {
         // - Tijera vence a Papel y Lagarto
         // - Lagarto vence a Spock y Papel
         // - Spock vence a Tijera y Piedra
-
-
-        // El método debe retornar un mensaje indicando el resultado del juego.
+// El método debe retornar un mensaje indicando el resultado del juego.
         // Ejemplo: Si la eleccionUsuario es "Piedra", el resultado podría ser "Ganaste" o "Perdiste" dependiendo de la elección de la computadora.
-        return "";
+        //return "";
+
+         String[] opciones = {"piedra", "papel", "tijera", "lagarto", "spock"};
+
+    // Elección aleatoria de la computadora
+    int indice = (int)(Math.random() * 5);
+    String eleccionComputadora = opciones[indice];
+
+    eleccionUsuario = eleccionUsuario.toLowerCase();
+
+    // Si ambos eligen lo mismo
+    if (eleccionUsuario.equals(eleccionComputadora)) {
+        return "Empate. Ambos eligieron " + eleccionUsuario;
     }
 
-    public String pptls2(String game[]) {
-        //Retornar player ganador o empate
-            /*
-            Rock = R
-            Paper = P
-            Scissors = S
-            Lizard = L
-            Spock = V
-        Scissors cuts Paper
-Paper covers Rock
-Rock crushes Lizard
-Lizard poisons Spock
-Spock smashes Scissors
-Scissors decapitates Lizard
-Lizard eats Paper
-Paper disproves Spock
-Spock vaporizes Rock
-Rock crushes Scissors
-         */
-        return "";
+    // Condiciones donde gana el usuario
+    if (
+        (eleccionUsuario.equals("piedra") && (eleccionComputadora.equals("tijera") || eleccionComputadora.equals("lagarto"))) ||
+        (eleccionUsuario.equals("papel") && (eleccionComputadora.equals("piedra") || eleccionComputadora.equals("spock"))) ||
+        (eleccionUsuario.equals("tijera") && (eleccionComputadora.equals("papel") || eleccionComputadora.equals("lagarto"))) ||
+        (eleccionUsuario.equals("lagarto") && (eleccionComputadora.equals("spock") || eleccionComputadora.equals("papel"))) ||
+        (eleccionUsuario.equals("spock") && (eleccionComputadora.equals("tijera") || eleccionComputadora.equals("piedra")))
+    ) {
+        return "Ganaste. Tú elegiste " + eleccionUsuario + " y la computadora eligió " + eleccionComputadora;
     }
 
-    public double areaCirculo(double radio) {
-        return 0.0;
-    }
-
-    public String zoodiac(int day, int month) {
-        return "";
-    }
-
-
+    // Si no gana el usuario, gana la computadora
+    return "Perdiste. Tú elegiste " + eleccionUsuario + " y la computadora eligió " + eleccionComputadora;
 }
-
